@@ -1,0 +1,97 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+    <button (click)="drawer.toggle()" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Canvas 1.0.0</span>
+    
+    <button routerLink="Dashboard" mat-button style="margin-left: 50px;">Dashboard</button>
+    <button [matMenuTriggerFor]="frv112" mat-button>FRV112</button>
+    <mat-menu #frv112="matMenu">
+        <button [matMenuTriggerFor]="MDT" mat-menu-item>MDT</button>
+        <button [matMenuTriggerFor]="NVR" mat-menu-item>NVR</button>
+    </mat-menu>
+
+    <mat-menu #MDT="matMenu">
+      <button mat-menu-item routerLink="MDTSTATUS">MDT Status</button>
+        <button mat-menu-item >MDT Daily Reports</button>
+       
+        <button mat-menu-item >Regular MDT OFFline</button>
+    </mat-menu>
+    <mat-menu #NVR="matMenu">
+        <button mat-menu-item>NVR Status</button>
+        <button mat-menu-item>NVR Daily Reports</button>
+        <button mat-menu-item>NVR Upload logs</button>
+    </mat-menu>
+
+
+    <mat-menu #variant="matMenu">
+        <button mat-menu-item>Color</button>
+        <button mat-menu-item>Size</button>
+    </mat-menu>
+    <span class="example-spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>person</mat-icon>
+          <span>User</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>manage_accounts</mat-icon>
+          <span>setting</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+</mat-toolbar>
+<mat-drawer-container autosize="">
+    <mat-drawer #drawer opened="true" mode="side" position="start" style="min-width: 200px;">
+    <mat-nav-list>
+        <mat-list-item>
+            <button routerLink="card" mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
+        </mat-list-item>
+        <mat-list-item>
+            <button routerLink="slider" mat-button><mat-icon>explore</mat-icon> NVR</button>
+        </mat-list-item>
+        <mat-list-item>
+            <button routerLink="table" mat-button><mat-icon>table</mat-icon> MDT</button>
+        </mat-list-item>
+        <mat-list-item>
+            <button mat-button><mat-icon>settings</mat-icon> Settings</button>
+        </mat-list-item>
+        <mat-list-item>
+            <button mat-button><mat-icon>help</mat-icon> Help</button>
+        </mat-list-item>
+        <mat-list-item>
+            <button mat-button><mat-icon>analytics</mat-icon> analytics</button>
+        </mat-list-item>
+        <mat-list>
+  <mat-list-item (click)="toggleSubMenu()">
+    <mat-icon mat-list-icon>menu</mat-icon>
+    Menu
+  </mat-list-item>
+
+  <mat-list *ngIf="isSubMenuVisible">
+    <mat-list-item>
+      <mat-icon mat-list-icon>star</mat-icon>
+      Sub Menu Item 1
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon mat-list-icon>star_border</mat-icon>
+      Sub Menu Item 2
+    </mat-list-item>
+  </mat-list>
+</mat-list>
+
+    </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content> 
+        <div style="text-align: center;min-height: 93vh;">
+
+          <div style="padding: 20px;">  <router-outlet></router-outlet></div>
+            </div>
+    </mat-drawer-content>
+    </mat-drawer-container>
